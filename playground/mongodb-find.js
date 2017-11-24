@@ -29,10 +29,10 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (ConnectErr, db) => {
         // ********  you need to call .toArray() which returns a Promise so we can call .then
         // ******** to do something with the docs. Docs come back as a first argumnet in the
         // ******** resolve (success) handler, the second argumnent handles the err.
-            console.log('Todos');
+            console.log('Users');
             console.log(JSON.stringify(docs, undefined, 2));
         }, (err) => {
-            console.log('Unable to fetch todos', err);
+            console.log('Unable to fetch users', err);
         });
 
     // db.close();

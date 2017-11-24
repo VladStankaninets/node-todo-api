@@ -1,8 +1,8 @@
 // const MongoClient = require('mongodb').MongoClient;
 const {MongoClient, ObjectID} = require('mongodb'); // New ES6 Syntax - Object Destructuring
 
-var obj = new ObjectID();
-console.log(obj);
+// var obj = new ObjectID();
+// console.log(obj);
 
 MongoClient.connect('mongodb://localhost:27017/TodoApp', (ConnectErr, db) => {
 
@@ -10,7 +10,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (ConnectErr, db) => {
     else console.log('Connected to MongoDB Server');
 
     // db.collection('ToDos').insertOne(
-    //     {'text': 'Someting to do', 'completed': false},
+    //     {'text': 'Something to do', 'completed': false},
     //     (InsertErr, result) => {
     //         if (InsertErr) return console.log('Unable to insert todo', InsertErr);
     //         // else
@@ -25,7 +25,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (ConnectErr, db) => {
     //         'Location': 'Toronto'
     //     },
     //     (InsertErr, result) => {
-    //         if (InsertErr) return console.log('Unable to insert todo', InsertErr);
+    //         if (InsertErr) return console.log('Unable to insert a user', InsertErr);
     //         // else
     //         // console.log(JSON.stringify(result.ops, undefined, 2));
     //         console.log(result.ops[0]._id.getTimestamp());

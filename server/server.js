@@ -18,8 +18,31 @@ mongoose.connect(config.URL, {
 // var ToDo is a function
 //* Mongoose will automatically lowercase and *//
 //* pluralize TODO into todos when it creates a collection *//
-var ToDo = mongoose.model('TODO', {
-    'text': { // This second Model's argument is called Object Schema
+// var ToDo = mongoose.model('TODO', {
+//     'text': { // This second Model's argument is called Object Schema
+//         'type': String,
+//         'required': true,
+//         'minlength': 1,
+//         'trim': true
+//     },
+//     'completed': {
+//         'type': Boolean,
+//         'default': false // Should default to false
+//     },
+//     'completedAt': {
+//         'type': Number,
+//         'default': null
+//     }
+// });
+
+var User = mongoose.model('User', {
+    'name': {
+        'type': String,
+        'required': true,
+        'minlength': 1,
+        'trim': true
+    },
+    'e-mail': {
         'type': String,
         'required': true,
         'minlength': 1,
@@ -28,10 +51,6 @@ var ToDo = mongoose.model('TODO', {
     'completed': {
         'type': Boolean,
         'default': false // Should default to false
-    },
-    'completedAt': {
-        'type': Number,
-        'default': null
     }
 });
 
@@ -51,13 +70,24 @@ var ToDo = mongoose.model('TODO', {
 // });
 
 
-var newTodo2 = new ToDo({
-    'text': '   Code an New Cool App   ',
-    'completed': true,
-    'completedAt': 200});
+// var newTodo2 = new ToDo({
+//     'text': '   Code an New Cool App   ',
+//     'completed': true,
+//     'completedAt': 200});
+//
+// newTodo2.save().then((doc) => {
+//     console.log('Saved a newTodo2', doc);
+// }, (err) => {
+//     console.log('Unable to save a newTodo2', err);
+// });
 
-newTodo2.save().then((doc) => {
-    console.log('Saved a newTodo2', doc);
+var newUser = new User({
+    'name': '   Vlad Stankaninets   ',
+    'e-mail': 'vlad.s@example.com        '
+});
+
+newUser.save().then((doc) => {
+    console.log('Saved a new User', doc);
 }, (err) => {
-    console.log('Unable to save a newTodo2', err);
+    console.log('Unable to save a new User', err);
 });

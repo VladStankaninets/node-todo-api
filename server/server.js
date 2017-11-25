@@ -1,58 +1,7 @@
-const mongoose = require('mongoose');
-const config = require('../config.js');
-// Mongoose uses callbacks by default and we would want to use Promises
-// So, we need to instruct mongoose to use Promises built-in library (part of JS now)
-// as opposed to 3-rd party Promises library as bluebird from pre-ES6 days
-mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://vlad:vlad123@ds117336.mlab.com:17336/vladdb');
-mongoose.connect(config.URL, {
-    'useMongoClient': true
-    // other options
-});
+const {mongoose} = require('./db/mongoose.js');
+const {ToDo} = require('./models/todo.js');
+const {User} = require('./models/user.js');
 
-
-// Now we need to create a Model
-// Model is like a schema to say that this prticular collection can store
-// only these proporties
-
-// var ToDo is a function
-//* Mongoose will automatically lowercase and *//
-//* pluralize TODO into todos when it creates a collection *//
-// var ToDo = mongoose.model('TODO', {
-//     'text': { // This second Model's argument is called Object Schema
-//         'type': String,
-//         'required': true,
-//         'minlength': 1,
-//         'trim': true
-//     },
-//     'completed': {
-//         'type': Boolean,
-//         'default': false // Should default to false
-//     },
-//     'completedAt': {
-//         'type': Number,
-//         'default': null
-//     }
-// });
-
-var User = mongoose.model('User', {
-    'name': {
-        'type': String,
-        'required': true,
-        'minlength': 1,
-        'trim': true
-    },
-    'e-mail': {
-        'type': String,
-        'required': true,
-        'minlength': 1,
-        'trim': true
-    },
-    'completed': {
-        'type': Boolean,
-        'default': false // Should default to false
-    }
-});
 
 // create a brand new ToDo
 // var newToDo = new ToDo({'text': 'Cook dinner'});
@@ -80,14 +29,14 @@ var User = mongoose.model('User', {
 // }, (err) => {
 //     console.log('Unable to save a newTodo2', err);
 // });
-
-var newUser = new User({
-    'name': '   Vlad Stankaninets   ',
-    'e-mail': 'vlad.s@example.com        '
-});
-
-newUser.save().then((doc) => {
-    console.log('Saved a new User', doc);
-}, (err) => {
-    console.log('Unable to save a new User', err);
-});
+//
+// var newUser = new User({
+//     'name': '   Vlad Stankaninets   ',
+//     'e-mail': 'vlad.s@example.com        '
+// });
+//
+// newUser.save().then((doc) => {
+//     console.log('Saved a new User', doc);
+// }, (err) => {
+//     console.log('Unable to save a new User', err);
+// });

@@ -4,7 +4,7 @@ const config = require('./config.js');
 // So, we need to instruct mongoose to use Promises built-in library (part of JS now)
 // as opposed to 3-rd party Promises library as bluebird from pre-ES6 days
 mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://vlad:vlad123@ds117336.mlab.com:17336/vladdb');
+// mongoose.connect('mongodb://user:password@ds117336.mlab.com:17336/vladdb');
 mongoose.connect(config.URL, {
     'useMongoClient': true
     // other options

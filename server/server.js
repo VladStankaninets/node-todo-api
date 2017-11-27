@@ -31,6 +31,14 @@ app.post('/todos', (req, res) => {
     });
 });
 
+app.get('/todos', (req, res) => {
+    ToDo.find().then((todos) => {
+        res.send({todos}); // More flexible to send back Object ToDo not array ToDo
+    }, (err) => {
+        res.status(400).send(err);
+    });
+});
+
 app.listen(port, () => {
     console.log(`Express server has started on ${port}`);
 });

@@ -35,6 +35,9 @@ app.listen(port, () => {
     console.log(`Express server has started on ${port}`);
 });
 //
+// Do not forget to export app for server.test.js
+module.exports = {app};
+//
 //
 //
 //

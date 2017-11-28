@@ -1,3 +1,5 @@
+
+const {ObjectId} = require('mongodb'); // from native Mongodb library, not from Mongoose
 const express = require('express');
 const bodyParser = require('body-parser');
 // To handle HTTP POST request in Express.js version 4 and above, you need to install middleware module called body-parser.
@@ -14,7 +16,7 @@ const port = process.env.PORT || 3000;
 
 var app = express();
 
-app.use(bodyParser.json()); // return from jso method is a function that is given  to express middleware
+app.use(bodyParser.json()); // return from json() method is a function that is given to express middleware
 
 // app.post('/todos', function callback (req, res) { // ES6 wants an arrow function
 app.post('/todos', (req, res) => {
@@ -37,6 +39,28 @@ app.get('/todos', (req, res) => {
     }, (err) => {
         res.status(400).send(err);
     });
+});
+
+
+app.get('/todos/:id', (req, res) => {
+    var {id} = req.params;
+
+    if (!ObjectId.isValid(id)) { // Object.Id is NOT valid
+        console.log('Id is not valid');
+        return res.status(400).send({'alert': 'Id is not valid'});
+    }
+    // else
+    ToDo.findById(id).then((todo) => {
+        if (!todo) {
+            console.log('Id not found');
+            res.status(404).send({'alert': 'Id not found'});
+        }
+        res.status(200).send({todo});
+    })
+        .catch((err) => {
+            // console.log('ToDo not found');
+            res.status(400).send(err);
+        });
 });
 
 app.listen(port, () => {
